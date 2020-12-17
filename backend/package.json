@@ -1,0 +1,42 @@
+{
+  "name": "tickets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./dist/app/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdgardoEhrG/Tickets.git"
+  },
+  "author": "Edgar Ehrenberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdgardoEhrG/Tickets/issues"
+  },
+  "homepage": "https://github.com/EdgardoEhrG/Tickets#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.11.8"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa2-cors": "^2.0.1",
+    "@types/mongoose": "^5.10.3",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.1.1",
+    "tslint": "^6.1.3",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^4.1.3"
+  }
+}
