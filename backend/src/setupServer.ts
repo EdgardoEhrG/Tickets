@@ -15,7 +15,7 @@ function middlewares(server: Koa) {
 
 async function startServer(server: Koa) {
   try {
-    const serverPort = 5000;
+    const serverPort: number = 5000;
     const serverStarted: Promise<void> = new Promise((resolve) => {
       server.listen(serverPort, resolve);
     });
