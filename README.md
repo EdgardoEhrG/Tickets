@@ -6,4 +6,12 @@
 
 > Koa
 
+> MongoDB
+
 > TypeScript
+
+> React
+
+> Redux
+
+> SCSS

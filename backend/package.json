@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/EdgardoEhrG/Tickets#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
@@ -27,6 +29,7 @@
     "mongoose": "^5.11.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/koa": "^2.11.6",
     "@types/koa-bodyparser": "^4.3.0",
