@@ -50,4 +50,65 @@ export class Ticket {
       ctx.body = error;
     }
   }
+
+  public async editTicket(ctx: Context): Promise<void> {
+    try {
+      const body: ITicket = ctx.request.body;
+      const { id } = ctx.params;
+      const schema = Joi.object().keys({
+        fullName: Joi.string().optional(),
+        email: Joi.string().optional(),
+        subject: Joi.string().optional(),
+        description: Joi.string().optional(),
+        department: Joi.string().optional(),
+        priority: Joi.string().optional(),
+      });
+      const value: ITicket = await schema.validateAsync(body);
+      await TicketModel.updateOne(
+        { _id: id },
+        {
+          fullName: value.fullName,
+          email: value.email,
+          subject: value.subject,
+          description: value.description,
+          department: value.department,
+          priority: value.priority,
+        }
+      );
+      ctx.body = { message: "Ticket updated successfully" };
+    } catch (error) {
+      console.log(error);
+      ctx.body = error;
+    }
+  }
+
+  public async deleteTicket(ctx: Context): Promise<void> {
+    try {
+      const { _id } = ctx.params;
+      const { id } = ctx.state.user;
+      await TicketModel.deleteOne({ _id });
+      await UserModel.updateOne(
+        { _id: id },
+        { $pull: { tickets: { ticket: _id } } }
+      );
+      ctx.body = { message: "Ticket deleted successfully" };
+    } catch (error) {
+      console.log(error);
+      ctx.body = error;
+    }
+  }
+
+  public async closeTicket(ctx: Context): Promise<void> {
+    try {
+      const { _id } = ctx.params;
+      await TicketModel.updateOne(
+        { _id },
+        { status: "Closed", closed: true, dueDate: new Date() }
+      );
+      ctx.body = { message: "Ticket closed successfully" };
+    } catch (error) {
+      console.log(error);
+      ctx.body = error;
+    }
+  }
 }
