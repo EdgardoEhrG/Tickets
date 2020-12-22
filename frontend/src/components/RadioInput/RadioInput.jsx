@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RadioButton = (props) => {
-  const { id, name, onChange, className, value, error, labelClassName };
+const RadioInput = (props) => {
+  const { id, name, onChange, className, value, error, labelClassName } = props;
   return (
     <>
       <input
@@ -25,7 +25,7 @@ const RadioButton = (props) => {
   );
 };
 
-RadioButton.propTypes = {
+RadioInput.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -35,4 +35,4 @@ RadioButton.propTypes = {
   error: PropTypes.string,
 };
 
-export default RadioButton;
+export default RadioInput;
