@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
 
+import { loginUser } from "../../redux/actions/auth";
 import { validateInput } from "../../helpers";
 
 import "./Auth.scss";
 
-const Login = () => {
+const Login = (props) => {
+  const { loginUser, isAuthenticated, history, error } = props;
+
   const [user, setUser] = useState({
     data: {
       username: "",
@@ -16,16 +21,22 @@ const Login = () => {
     },
   });
 
-  const [error, setError] = useState({
+  const [errorInfo, setError] = useState({
     usernameError: "",
     passwordError: "",
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }, [isAuthenticated, history]);
 
   const onLoginUser = (e) => {
     e.preventDefault();
     const isValid = validateInput(user.data, setError);
     if (isValid) {
-      console.log(user.data);
+      loginUser(user.data);
     }
   };
 
@@ -42,7 +53,7 @@ const Login = () => {
   };
 
   const { username, password } = user.data;
-  const { usernameError, passwordError } = error;
+  const { usernameError, passwordError } = errorInfo;
 
   return (
     <div className="auth-wrapper">
@@ -80,9 +91,22 @@ const Login = () => {
             Not yet registered? <Link to="/sign-up">Register</Link>
           </p>
         </form>
+
+        {error ? <p className="error-feedback">{error}</p> : ""}
       </div>
     </div>
   );
 };
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+  error: PropTypes.string,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.error,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

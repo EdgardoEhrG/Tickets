@@ -27,9 +27,7 @@ export const validateInput = (userData, setError) => {
   }
 
   if (typeof password !== undefined) {
-    if (
-      !password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8})$/)
-    ) {
+    if (!password.match(/^.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[a-z]).*$/)) {
       formValid = false;
       errorMsg.passwordError = "Password requires at least 6 characters";
     }

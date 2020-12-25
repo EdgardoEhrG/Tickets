@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import CustomInput from "../CustomInput/CustomInput";
 import RadioInput from "../RadioInput/RadioInput";
@@ -12,7 +13,7 @@ import { validateInput } from "../../helpers";
 import "./Auth.scss";
 
 const Register = (props) => {
-  const { createUser, isAuthenticated, history } = props;
+  const { createUser, isAuthenticated, history, error } = props;
   const [user, setUser] = useState({
     data: {
       username: "",
@@ -21,7 +22,7 @@ const Register = (props) => {
     },
   });
 
-  const [error, setError] = useState({
+  const [errorInfo, setError] = useState({
     usernameError: "",
     passwordError: "",
     roleError: "",
@@ -34,7 +35,7 @@ const Register = (props) => {
   }, [isAuthenticated, history]);
 
   const { username, password } = user.data;
-  const { usernameError, passwordError, roleError } = error;
+  const { usernameError, passwordError, roleError } = errorInfo;
 
   const onRegisterUser = (e) => {
     e.preventDefault();
@@ -120,13 +121,22 @@ const Register = (props) => {
             </p>
           </div>
         </form>
+
+        {error ? <p className="error-feedback">{error}</p> : ""}
       </div>
     </div>
   );
 };
 
+Register.propTypes = {
+  createUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+  error: PropTypes.string,
+};
+
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { createUser })(Register);
