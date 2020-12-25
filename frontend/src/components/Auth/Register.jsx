@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import CustomInput from "../CustomInput/CustomInput";
 import RadioInput from "../RadioInput/RadioInput";
 import CustomButton from "../CustomButton/CustomButton";
 
+import { createUser } from "../../redux/actions/auth";
 import { validateInput } from "../../helpers";
 
 import "./Auth.scss";
 
-const Register = () => {
+const Register = (props) => {
+  const { createUser, isAuthenticated } = props;
   const [user, setUser] = useState({
     data: {
       username: "",
@@ -33,7 +36,7 @@ const Register = () => {
     e.preventDefault();
     const isValid = validateInput(user.data, setError);
     if (isValid) {
-      console.log(user.data);
+      createUser(user.data);
     }
   };
 
@@ -118,4 +121,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { createUser })(Register);
