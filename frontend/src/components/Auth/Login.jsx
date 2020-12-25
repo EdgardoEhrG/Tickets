@@ -17,14 +17,9 @@ const Login = () => {
   });
 
   const [error, setError] = useState({
-    data: {
-      usernameError: "",
-      passwordError: "",
-    },
+    usernameError: "",
+    passwordError: "",
   });
-
-  const { username, password } = user.data;
-  const { usernameError, passwordError } = error.data;
 
   const onLoginUser = (e) => {
     e.preventDefault();
@@ -45,6 +40,9 @@ const Login = () => {
       },
     });
   };
+
+  const { username, password } = user.data;
+  const { usernameError, passwordError } = error;
 
   return (
     <div className="auth-wrapper">

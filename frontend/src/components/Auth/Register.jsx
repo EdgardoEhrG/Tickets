@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,7 +12,7 @@ import { validateInput } from "../../helpers";
 import "./Auth.scss";
 
 const Register = (props) => {
-  const { createUser, isAuthenticated } = props;
+  const { createUser, isAuthenticated, history } = props;
   const [user, setUser] = useState({
     data: {
       username: "",
@@ -22,15 +22,19 @@ const Register = (props) => {
   });
 
   const [error, setError] = useState({
-    data: {
-      usernameError: "",
-      passwordError: "",
-      roleError: "",
-    },
+    usernameError: "",
+    passwordError: "",
+    roleError: "",
   });
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }, [isAuthenticated, history]);
+
   const { username, password } = user.data;
-  const { usernameError, passwordError, roleError } = error.data;
+  const { usernameError, passwordError, roleError } = error;
 
   const onRegisterUser = (e) => {
     e.preventDefault();
