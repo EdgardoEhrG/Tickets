@@ -4,9 +4,11 @@
 
 > Koa
 
+> Socket.io
+
 > MongoDB
 
-> TypeScript
+> TypeScript / JS
 
 > React
 

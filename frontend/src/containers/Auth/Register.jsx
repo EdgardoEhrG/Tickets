@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-
-import CustomInput from "../CustomInput/CustomInput";
-import RadioInput from "../RadioInput/RadioInput";
-import CustomButton from "../CustomButton/CustomButton";
-
 import { createUser } from "../../redux/actions/auth";
+
+import CustomInput from "../../components/CustomInput/CustomInput";
+import RadioInput from "../../components/RadioInput/RadioInput";
+import CustomButton from "../../components/CustomButton/CustomButton";
+
+import PropTypes from "prop-types";
 import { validateInput } from "../../helpers";
 
 import "./Auth.scss";

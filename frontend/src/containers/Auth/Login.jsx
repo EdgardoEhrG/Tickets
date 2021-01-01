@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-
-import CustomInput from "../CustomInput/CustomInput";
-import CustomButton from "../CustomButton/CustomButton";
-
 import { loginUser } from "../../redux/actions/auth";
+
+import CustomInput from "../../components/CustomInput/CustomInput";
+import CustomButton from "../../components/CustomButton/CustomButton";
+
+import PropTypes from "prop-types";
 import { validateInput } from "../../helpers";
 
 import "./Auth.scss";

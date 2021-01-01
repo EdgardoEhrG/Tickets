@@ -1,4 +1,5 @@
 import React from "react";
+
 import PropTypes from "prop-types";
 
 const CustomInput = (props) => {
@@ -24,7 +25,6 @@ const CustomInput = (props) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        autoComplete={false}
         style={{ border: error ? "solid 1px red" : "" }}
       />
       {error ? <p style={{ color: "red", fontSize: "14px" }}>{error}</p> : ""}
