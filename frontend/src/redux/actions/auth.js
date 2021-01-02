@@ -1,10 +1,12 @@
 import { AUTHENTICATE_USER, SET_ERROR } from "../types";
 import { signUpUser, signInUser } from "../../services/auth";
+import { authToken } from "../../helpers";
 
 export const createUser = (userData) => async (dispatch) => {
   try {
     const user = await signUpUser(userData);
     const { token } = user.data;
+    authToken(token);
     dispatch({
       type: AUTHENTICATE_USER,
       payload: token,
@@ -23,6 +25,7 @@ export const loginUser = (userData) => async (dispatch) => {
   try {
     const user = await signInUser(userData);
     const { token } = user.data;
+    authToken(token);
     dispatch({
       type: AUTHENTICATE_USER,
       payload: token,

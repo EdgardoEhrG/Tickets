@@ -1,3 +1,7 @@
+import axios from "axios";
+
+// ------------- Validation
+
 export const validateInput = (userData, setError) => {
   const { username, password, role } = userData;
 
@@ -41,4 +45,38 @@ export const validateInput = (userData, setError) => {
   setError(errorMsg);
 
   return formValid;
+};
+
+// ------------- Items
+
+export const departmentsArray = () => {
+  const res = [
+    { id: 0, title: "IT", key: "departments" },
+    { id: 1, title: "Marketing", key: "departments" },
+    { id: 2, title: "Sales", key: "departments" },
+    { id: 3, title: "Finance", key: "departments" },
+    { id: 4, title: "Human Resourses", key: "departments" },
+  ];
+
+  return res;
+};
+
+export const prioritiesArray = () => {
+  const res = [
+    { id: 0, title: "Low", key: "priorities" },
+    { id: 1, title: "Medium", key: "priorities" },
+    { id: 2, title: "High", key: "priorities" },
+  ];
+
+  return res;
+};
+
+// ------------- Token
+
+export const authToken = (token) => {
+  if (token) {
+    axios.defaults.headers.common["authorization"] = token;
+  } else {
+    delete axios.defaults.headers.common["authorization"];
+  }
 };

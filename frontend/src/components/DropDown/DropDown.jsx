@@ -3,11 +3,17 @@ import React, { useState } from "react";
 import "./DropDown.scss";
 
 const DropDown = (props) => {
-  const { title, list, label } = props;
+  const { title, list, label, getDropdownValue } = props;
 
   let [listOpen, setListOpen] = useState(false);
 
   const toggleList = () => {
+    listOpen = !listOpen;
+    setListOpen(listOpen);
+  };
+
+  const selectItem = (item) => {
+    getDropdownValue(item);
     listOpen = !listOpen;
     setListOpen(listOpen);
   };
@@ -24,11 +30,15 @@ const DropDown = (props) => {
         )}
         {listOpen && (
           <ul className="dd-list">
-            {list.map((item) => {
-              <li className="dd-list-item" key={item.id}>
+            {list.map((item) => (
+              <li
+                className="dd-list-item"
+                key={item.id}
+                onClick={selectItem(item)}
+              >
                 {item.title}
-              </li>;
-            })}
+              </li>
+            ))}
           </ul>
         )}
       </div>

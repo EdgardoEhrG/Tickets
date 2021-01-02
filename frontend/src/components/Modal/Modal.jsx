@@ -2,6 +2,8 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
+import "./Modal.scss";
+
 const Modal = (props) => {
   const { header, visible, children, dismiss } = props;
   return (

@@ -10,6 +10,7 @@ import Register from "./containers/Auth/Register";
 import Dashboard from "./containers/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Navbar from "./layouts/Navbar/Navbar";
+import FilteredTable from "./components/Table/FilteredTable";
 
 const App = () => {
   return (
@@ -21,6 +22,11 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Login} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/tickets/:status/:type"
+                component={FilteredTable}
+              />
               <Route exact path="/sign-in" component={Login} />
               <Route exact path="/sign-up" component={Register} />
             </Switch>

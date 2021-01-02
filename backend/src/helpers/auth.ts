@@ -9,7 +9,7 @@ export async function verifyToken(ctx: Context, next: () => void) {
     return;
   }
 
-  const token = ctx.request.headers.authorization.token;
+  const token = ctx.request.headers.authorization;
   if (!token) {
     ctx.response.status = HTTP_STATUS.FORBIDDEN;
     ctx.body = { message: "No token provided" };

@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import { addModal } from "../../redux/actions/modal";
+import { editModal } from "../../redux/actions/modal";
 
 import Modal from "../Modal/Modal";
 import TicketForm from "./TicketForm";
 
-const AddTicket = (props) => {
-  const { add, addModal } = props;
+const EditTicket = (props) => {
+  const { edit, editModal } = props;
 
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setVisible(add);
-  }, [setVisible, add]);
+    setVisible(edit);
+  }, [setVisible, edit]);
 
   const dismiss = () => {
-    addModal(false);
+    editModal(false);
   };
 
   return (
     <>
-      <Modal header="Add new ticket" visible={visible} dismiss={dismiss}>
+      <Modal header="Edit ticket" visible={visible} dismiss={dismiss}>
         <TicketForm />
       </Modal>
     </>
@@ -29,7 +29,7 @@ const AddTicket = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  add: state.modal.add,
+  edit: state.modal.edit,
 });
 
-export default connect(mapStateToProps, { addModal })(AddTicket);
+export default connect(mapStateToProps, { editModal })(EditTicket);
