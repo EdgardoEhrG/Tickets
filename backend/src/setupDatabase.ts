@@ -15,7 +15,10 @@ async function connectToDatabase(): Promise<boolean> {
   };
 
   try {
-    await mongoose.connect("mongodb://localhost/tickets", connectionOptions);
+    await mongoose.connect(
+      `${process.env.TICKET_APP_DB_URL}`,
+      connectionOptions
+    );
     console.log("Connected to database");
     return true;
   } catch (error) {
