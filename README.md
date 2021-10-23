@@ -15,3 +15,11 @@
 > Redux
 
 > SCSS
+
+## Useful elements
+
+- [ ] Dashboard logic
+- [ ] Task logic
+- [ ] Auth
+- [ ] CRUD operations
+- [ ] Socket connection
