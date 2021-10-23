@@ -8,13 +8,13 @@
 
 > MongoDB
 
-> TypeScript / JS
+> JS | TypeScript
 
 > React
 
 > Redux
 
-> SCSS
+> Sass (SCSS)
 
 ## Useful elements
 
